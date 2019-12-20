@@ -1,9 +1,9 @@
-export const enum Direction {
+export enum Direction {
   UP,
   DOWN
 }
 
-export const enum Probe {
+export enum Probe {
   Default,
   Throttle,
   Normal,
