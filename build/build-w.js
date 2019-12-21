@@ -1,11 +1,18 @@
 const path = require('path')
-// const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack')
+const argv = require('yargs').argv
 
-module.exports = {
-  entry: './src/index.ts',
+let loader = 'babel-loader'
+
+if (argv.loader) {
+  loader = argv.loader
+}
+
+webpack({
+  entry: path.resolve(__dirname, '../src/index.ts'),
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     library: 'demo',
     libraryTarget: 'commonjs2'
   },
@@ -18,7 +25,7 @@ module.exports = {
         test: /\.ts$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'ts-loader'
+          loader: loader
         }
       }
     ]
@@ -30,4 +37,8 @@ module.exports = {
   },
   devtool: 'source-map',
   mode: 'development'
-};
+}).run((err) => {
+  if (err) {
+    throw err
+  }
+})

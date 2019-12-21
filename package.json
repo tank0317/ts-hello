@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-b": "node build/build-babel.js",
-    "build-t": "node build/build-ts.js",
-    "build-w": "webpack"
+    "rollup-t": "node build/build-r.js --ts",
+    "rollup-b": "node build/build-r.js",
+    "webpack-b": "node build/build-w.js",
+    "webpack-t": "node build/build-w.js --loader 'ts-loader'",
+    "debug": "node --inspect-brk build/build-w.js --loader 'ts-loader'"
   },
   "author": "",
   "license": "ISC",
@@ -34,5 +36,8 @@
     "typescript": "^3.5.3",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "ts-loader": "^6.2.1"
   }
 }
